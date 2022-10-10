@@ -4,10 +4,28 @@ uuid  ->  base64
 import ctypes
 from loguru import logger
 
+# uuid   aid  openudid    1f9eedbeeb19fdfg    CWY5ZWVuYwVvYtO5ZwHwZm==
+uuid = [49, 102, 57, 101, 101, 100, 98, 101, 101, 98, 49, 57, 102, 55, 102, 101]
 
-c = [49, 102, 57, 101, 101, 100, 98, 101, 101, 98, 49, 57, 102, 55, 102, 101]
+# area   1_72_2799_0   CV83Cv8yDzu5XzK=
+area = [49, 95, 55, 50, 95, 50, 55, 57, 57, 95, 48]
+
+# d_model   M2010J19SC   JJSmCJLACJvJGm==
+d_model = [77, 50, 48, 49, 48, 74, 49, 57, 83, 67]
+
+# wifiBssid  unknown  dW5hbw93bq==
+wifiBssid = [117, 110, 107, 110, 111, 119, 110]
+
+# osVersion     11   CJO=
+osVersion = [49, 49]
+
+# d_brand    Xiaomi     WQvrb21f
+d_brand = [88, 105, 97, 111, 109, 105]
+
+# screen    2218*1080      CtSnEMenCNqm
+screen = [50, 50, 49, 56, 42, 49, 48, 56, 48]
 base = ""
-for one in c:
+for one in screen:
     base += chr(one)
 print(base)
 
@@ -77,7 +95,7 @@ def get_cipher_uuid(uuid: str):
 
 
 if __name__ == '__main__':
-    uuid_str = "1f9eedbeeb19fdfg"
+    uuid_str = "2218*1080"
     get_cipher_uuid(uuid_str)
 
 

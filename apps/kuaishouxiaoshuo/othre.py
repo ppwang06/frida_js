@@ -7,9 +7,7 @@ bArr[i2] = (byte) (255 & j2)  java byte强转对应 int_to_byte
 负数的十进制 转 二进制    int_to_bin
 """
 import ctypes
-import base64
 import string
-from loguru import logger
 
 
 def int_overflow(val):
@@ -119,12 +117,14 @@ if __name__ == '__main__':
     _sig3_48 = "8293c0c0120f87cbe9cac9c85bfb272de5ca97b3d6dbd5c3"
     for one in _sig3_48:
         one_index.append(ord(one))
+    print(one_index)
     res = [int_to_bin(i, 8) for i in one_index]
+    print(res)
     print(encode(res))
-    d = ""
-    for c in [49,54,54,53,53,53,52,55,55,50,52,50,49]:
-        d += chr(c)
-    print(d)
+    # d = ""
+    # for c in [49,54,54,53,53,53,52,55,55,50,52,50,49]:
+    #     d += chr(c)
+    # print(d)
 
 
 

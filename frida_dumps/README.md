@@ -53,7 +53,7 @@ libc.so_0xf2282000_819200_fix.so
 ## 2. dump android dex
 
 ```Text
-frida -U --no-pause -f packagename  -l dump_dex.js
+frida -U --no-pause -f com.trs.mzb  -l dump_dex.js
      ____
     / _  |   Frida 12.4.8 - A world-class dynamic instrumentation toolkit
    | (_| |

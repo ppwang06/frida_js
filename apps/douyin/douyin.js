@@ -1,5 +1,6 @@
 /*
 * 抖音抓包
+* 参考链接 https://bbs.kanxue.com/thread-276015.htm
 * com.ss.android.ugc.aweme
 * 可以用来抖音抓包 但手机app显示加载失败 点击重试
 * frida -U --no-pause -f com.ss.android.ugc.aweme -l douyin.js

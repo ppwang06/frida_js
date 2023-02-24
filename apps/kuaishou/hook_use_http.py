@@ -2,36 +2,31 @@ import sys
 import frida
 
 device = None
-app = "com.dragon.read"
-app = "com.ss.android.ugc.aweme"
-
+app = "com.smile.gifmaker"
 jscode = """
 'use strict';
 
 Java.perform(function(){
-
-    var ba = Java.use('org.chromium.CronetClient');
-    if (ba){
-        console.log("2 find class");
-        ba.tryCreateCronetEngine.implementation = function(){
-            console.log("use http");
-            }
-        }
-    var NetworkParams = Java.use('X.SYN');
-    NetworkParams.LIZ.overload('android.content.Context', 'org.json.JSONObject', 'X.SYQ').implementation = function (a1, a2,a3) {
-        console.log(a2.toString());
-        var x = this.LIZ(a1, a2,a3);
-        return x;
-    };
-    });
-
-console.log("loaded script");
+    var t1 = Java.use("com.kuaishou.aegon.okhttp.CronetInterceptorConfig");
+      t1.a.overload('java.lang.String', '[Ljava.lang.String;', 'boolean').implementation = function(a1,a2,a3){
+           return false;
+            };      
+            
+               var t2 = Java.use("com.kuaishou.dfp.a.d");
+      t2.a.overload('com.kuaishou.dfp.a.z', 'com.kuaishou.dfp.a.a.a.a.a.a.b', 'com.kuaishou.dfp.d.k', 'boolean', 'boolean').implementation = 
+      function(a1,a2,a3,a4,a5){
+      console.log(a2.toString());
+      console.log(Java.use("android.util.Log").getStackTraceString(Java.use("java.lang.Exception").$new()));
+           return this.a(a1,a2,a3,a4,a5);
+            };    
+});
 """
 
 
 def launch_app():
     global device
     device = frida.get_remote_device()
+    print(device)
     device.on("spawn-added", spawn_added)
     device.enable_spawn_gating()
     print("Enabled spawn gating")
@@ -56,7 +51,7 @@ def launch_app():
 
 
 def spawn_added(spawn):
-    print("spawn_added:", spawn)
+    # print("spawn_added:", spawn)
     if spawn.identifier.startswith(app):
         session = device.attach(spawn.pid)
         script = session.create_script(jscode)
@@ -72,7 +67,14 @@ def on_message(message, data):
         print("on_message", message, data)
 
 
+import os
+
+
 def main():
+    os.system("adb shell rm -rf /storage/emulated/0/.com.smile.gifmaker/.rrssuu")
+    os.system(
+        "adb shell rm -rf /storage/emulated/0/.com.smile.gifmaker/storage/emulated/0/Android/data/com.smile.gifmaker/files/.rrssuu")
+
     launch_app()
 
 

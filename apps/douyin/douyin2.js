@@ -10,6 +10,13 @@ Java.perform(function(){
             }
         }
 
+    var NetworkParams = Java.use('X.SYN');
+    NetworkParams.LIZ.overload('android.content.Context', 'org.json.JSONObject', 'X.SYQ').implementation = function (a1, a2,a3) {
+        console.log(a2.toString());
+        var x = this.LIZ(a1, a2,a3);
+        return x;
+    };
+
     });
 
 console.log("loaded script");

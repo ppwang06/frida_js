@@ -29,7 +29,8 @@
 * 1.0
 * q()
 * 83
-*
+* public static native Object[] main(int i2, Object[] objArr);
+* Object[] main = Bridge.main(101, new Object[]{bArr, u(), s(), w(), q()});
 *
 *
 * */

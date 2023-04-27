@@ -77,6 +77,20 @@ end = "qmmXIgGnkXg4MjkzYzBjMDEyMGY4N2NiZTljYWM5Yzg1YmZiMjcyZGU1Y2E5N2IzZDZkYmQ1Y
      [Python  Base64代码](./apps/kuaishouxiaoshuo/other_base64.py)
 5. Android的Base64源码    
     [Android Base64源码](./apps/common_utils/Base64.txt)     
+6. Java中`str1.getBytes()` python实现
+```python
+cstr = "天下大吉"
+b = cstr.encode('utf-8')
+b_arr = [x if x < 128 else x - 256 for x in b]
+print(b_arr)
+
+
+bytes_list = [x + 256 if x < 0 else x for x in b_arr] # 转换为无符号字节值
+b = bytes(bytes_list)
+s = b.decode('utf-8')
+print(s)
+```
+
 
 
 

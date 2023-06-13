@@ -1,56 +1,14 @@
 package main
 
 import (
+	"encoding/base64"
 	"fmt"
 )
 
 func getCipherUUID(uuid string) string {
-	var endStr string
 	baseByte := "KLMNOPQRSTABCDEFGHIJUVWXYZabcdopqrstuvwxefghijklmnyz0123456789+/"
 
-	b := []byte(uuid)
-	bArr := make([]int, len(b))
-
-	for i, x := range b {
-		if x < 128 {
-			bArr[i] = int(x)
-		} else {
-			bArr[i] = int(x) - 256
-		}
-	}
-
-	i2 := 0
-	for i2 <= len(bArr)-1 {
-		bArr2 := [4]int{0, 0, 0, 0}
-		b2 := 0
-
-		i3 := 0
-		for i3 <= 2 {
-			i4 := i2 + i3
-			if i4 <= len(bArr)-1 {
-				bArr2[i3] = b2 | int(uint32(bArr[i4]&255)>>uint32((i3*2)+2))
-				b2 = int(uint32((bArr[i4]&255)<<(((2-i3)*2)+2)&255) >> 2)
-			} else {
-				bArr2[i3] = b2
-				b2 = 64
-			}
-			i3++
-		}
-		bArr2[3] = b2
-		i5 := 0
-		for i5 <= 3 {
-			if bArr2[i5] <= 63 {
-				endStr += string(baseByte[bArr2[i5]])
-			} else {
-				endStr += "="
-			}
-			i5++
-		}
-		i2 += 3
-	}
-
-	fmt.Println("最终结果为:", endStr)
-	return endStr
+	return base64.NewEncoding(base64List).EncodeToString([]byte(uuid))
 }
 
 func main() {

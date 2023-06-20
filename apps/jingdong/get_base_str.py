@@ -2,6 +2,7 @@
 uuid  ->  base64
 京东算法加密
 """
+import base64
 import ctypes
 import json
 
@@ -94,6 +95,19 @@ def get_cipher_uuid(uuid: str):
     return end_str
 
 
+# 等价于 get_cipher_uuid
+def get_cipher_uuid_new(uuid_str: str):
+    raw_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    new_table = 'KLMNOPQRSTABCDEFGHIJUVWXYZabcdopqrstuvwxefghijklmnyz0123456789+/'
+    dictionary_decode = str.maketrans(new_table, raw_table)  # 创建字符映射关系 用于base64decode
+    dictionary_encode = dict(zip(dictionary_decode.values(), dictionary_decode.keys()))  # 创建一个与上面反向的映射关系用于base64encode
+
+    result_b64 = base64.b64encode(uuid_str.encode()).decode()  # MTIzMTIzMTIz base64encode(v) 正常的123123进行base64以后的值
+    new_result_b64 = result_b64.translate(dictionary_encode)  # EP8hEP8hEP8h base64encode(v,table) 换表以后base64以后的值
+    # new_data = new_result_b64.translate(dictionary_decode)  # MTIzMTIzMTIz base64encode(v) 变回正常的值
+    return new_result_b64
+
+
 if __name__ == '__main__':
     # uuid_str = '{"abTest800":true,"acceptPrivacy":true,"avoidLive":false,"brand":"Redmi","cityCode":72,"cityId":0,"cpsNoTuan":null,"darkModelEnum":3,"districtId":0,"eventId":"Startup_OpenAppParam_Status","fromType":0,"isDesCbc":true,"latitude":"0.0","lego":true,"longitude":"0.0","model":"M2010J19SC","ocrFlag":false,"oneboxChannel":false,"oneboxKeyword":"","oneboxSource":"","overseas":0,"pdVersion":"1","personas":null,"pluginVersion":101050,"plusClickCount":0,"plusLandedFatigue":0,"productJdv":"0|direct|-|none|-|1677724626440|1677827410","provinceId":"0","prstate":"0","searchWareflag":"","selfDelivery":"0","skuId":"10062884946355","source_type":"m_destination_page","source_value":"","townId":0,"uAddrId":"0","utmMedium":null,"wareInnerSource":"extra.inner.source.init","yrqNew":"1"}'
     # # oyTrZQHyHwvidQVyStesCISiSwPydQvtbQVPc3DroIS6StOsBMTsdXTfZWHPoRLCYWTvbMS6SxHzYWT0ZXD0pQTrc2U2DRnuWO5iY21uoWSzZNLrHtr4J0HtoO4zoQvZWO5ipRHzYWT0ZXD0SsmsZQV2aWDvaWHUYWviStesEJusBMTvoRLlc2VuG291bxGsEsSmSsmsZxTlbxHPoRLfZRCsEsTQX251bQnpCMSiSwvjYWdvc2v6ZIS6oyTxcwvuIW1xStesDJCnoNUzCISiSwnfc3HTbWcsEsSzDJr4CzU4SsmsbQ9kZ0vjZyS6StUzCXq3CNqspImsaW5zZXT0GXT0aWDiZIS6StOsBMTfbxDvcxHJY2VkZIS6StOsBMTfbxDvcxHvZODldW50StesCMSiSwvzG29ycwVtdMS6StOsBMTgZRYsEsSmpQHfcwVtdRmjpQ5lbwV8BXmnDtqnDzO4Dtu4DNO4pNO2ENO3CJunDtcsBMThZXv3b3TuStes5fof5fWZ5ZMl5fw6SsmsbQ9tYWnEdW0sEsSmSsmsbwV3JWvuZQnvVQPxStesCISiSw5vd1ZvcxDfb24sEsSzSsmsb25vGw94JW9uStesCISiSw9yaWdkYWnJZWPyY2qsEsSnSsmsb3TfZ25rbPDvbQVtdMS6StOsBMTmYWdvStesCISiSxLrZ2VPbxHyYW5tZIS6StOsBMTmYWdvc2v6ZIS6StOmSsmscQ9mdWnrdQvlbvH5cQUsEsSyCJOsBMTmdwvuStesSsmsc2VrcwDeVwVyc2vlbuDlZQUsEsS5DzqmSsmsc2Vtb25uIW5zZWHNb3VkdMS6StKsBMTzaQ93U2rlcPHrYsS6SxvvcySiSxDeb3dJdQ9yZVHrYsS6StOsBMTzb3VyY2VIZWYsEvj7SwV2ZW50IWGsEsTJZWPyY2riaXD0X1DvYXTtaOTloMSiSxLrZ2VTZMS6SvDvYXTtaP9Gcw9udWD0JQvzdMSiSxL2IWGsEsSspIn7SwV2ZW50IWGsEsTJZWPyY2rpGXDzb2DfYXHfdwVXb3TuSsmsaXDOaXTvY3HJZWPyY2qsEsSmSsmscQPxZUvuStesU2VrcwDeX0PtdQv2aXH5SsmscRZTZMS6StY0ZtS1Ytu3D2DrDNHvCNvsDJOzYzVsEJdtCwHsZtdrSx1dBMTzdQ9tayS6StOsBMT2ZXSsEsSnCJqspG==
@@ -112,6 +126,10 @@ if __name__ == '__main__':
     end_body = get_cipher_uuid(new_body)
     test = 'oyTrZQHyHwvidQVyStesCISiSwPydQvtbQVPc3DroIS6StOsBMTsdXTfZWHPoRLCYWTvbMS6SxHzYWT0ZXD0pQTrc2U2DRnuWO5iY21uoWSzZNLrHtr4J0HtoO4zoQvZWO5ipRHzYWT0ZXD0SsmsZQV2aWDvaWHUYWviStesDtGsBMTvoRLlc2VuG291bxGsEsSnDzSsBMTwcw9kdOV4cQvucyS6SuZpbxVibP8mSsmsaW1rZ2VzaXfvStf7SwdyaWHTbWcsEsS1CzP4DJCnSsmsbQvzdOvjZyS6StC1ERqzDJqsBMTib25xIW1xStesDJCnoNcmEMT9BMTfbxDvcxHLcxHfY2nvStesCISiSwvkc2VydPDtZW5vStesCISiSwvkc2VydQVuG291bxGsEsS1SsmsaXDNb3TyZWD0StesCISiSwfudsS6StL8YXLmbWPya2V0pRHpCtKnENUnCtUyDV9rcRLjYXThZXH8dRVfZ3Vrbwd8DNSnCJPpCP94aWPlbWumCNPpCP8mpNO2ENS0CNU4CtusBMThZXv3b3TuStes5fof5fWZ5ZMl5fw6SsmsbwV3JWvuZQnvVQPxStesCISiSw5vd1ZvcxDfb24sEsSzSsmsb25vGw94JW9uStesCISiSw9yaWdkYWnJZWPyY2qsEsSnSsmsb3TfZ25rbPDvbQVtdMS6StOsBMTmYWdvStesCJUsBMTmYWdvHW50cwPkY2UsEsSnSsmscQPxZXDfowUsEsSnCMSiSxLlcRViYXHfb25UoXLvStesCtKnSsmscRZfZMS6SwGnYwPtZtK1DWZwCtG0YwZrCtVsZwUyCtduCWHwZQG3Ssmsc2VrcwDeVwVyc2vlbuDlZQUsEsS5ENCmSsmsc2Vtb25uIW5zZWHNb3VkdMS6StKsBMTzaQ93U2rlcPHrYsS6SxvvcySiSxDeb3dJdQ9yZVHrYsS6StOsBMTzb3VyY2VIZWYsEvj7SwV2ZW50IWGsEsTJdQPydRVmX09mZW5LcRLGYXTrbV9JdQP0dXCsBMTfc0HfcwVtdPDvYXTtaMS6StOsBMTmYWdvIWGsEsTTbwnfbwVXZWTWaWV3X0q1UPYsBMTmduvuStesSx1dBMTzdQ9tayS6StOsBMT2ZXSsEsSnCJqspG=='
     logger.info(end_body == test)
+    #  新方法
+    end_body_new = get_cipher_uuid_new(new_body)
+    logger.info(f"新方法结果为:{end_body_new}")
+    logger.info(end_body_new == test)
 
 
 

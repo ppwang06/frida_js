@@ -1,4 +1,5 @@
 // 快手抓包  不可用 会黑设备 提示操作频繁
+// 新版本快手不可用  建议使用 hook_use_http
 //com.kuaishou.aegon.okhttp.CronetInterceptorConfig    a
 
 console.log("kuaishou 代理")

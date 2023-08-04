@@ -47,12 +47,12 @@ adb forward tcp:27043 tcp:27043
 
 ###### 记录
 
-[aes 自吐算法](aes.js)      
+[aes 自吐算法](common_js/aes.js)      
 ``frida -U --no-pause -f package  -l aes.js``
 
-[aes 自吐算法](自吐算法.js)          
+[aes 自吐算法](common_js/自吐算法.js)          
 ``frida -U --no-pause -f package  -l 自吐算法.js``
 
             
 ###### hook代码模板js
-[hook java层代码模板](moban.js) 
+[hook java层代码模板](common_js/moban.js) 

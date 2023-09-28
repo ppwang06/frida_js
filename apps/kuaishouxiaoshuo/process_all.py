@@ -12,4 +12,5 @@
 2. 调用so  atlasSign  生成sig3(未解决)
 3. ("时间戳计数转字节数组 即 -3339544450813078700" + sig3字节数组  )  ---> 转base64
 4. 操作base64变换    变换方式：replace('+', '-').replace('/', '_').replaceAll("=", "")
+类 Base64.encodeToString(aa, 11)
 """

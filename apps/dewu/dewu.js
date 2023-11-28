@@ -1,4 +1,32 @@
+/*
+*
+    var linker = Process.findModuleByName('linker64');
+    var exports = linker.enumerateSymbols();
+    var call_function_addr1 = null;
+    for (var i in exports) {
+        var exports_name = exports[i].name;
+        var exports_address = exports[i].address;
 
+        // __dl__Z20__android_dlopen_extPKciPK17android_dlextinfoPKv
+        // if (exports_name.indexOf("__dl__Z20__android_dlopen_extPKciPK17android_dlextinfoPKv") !== -1) {
+        if (exports_name.indexOf('__dl___loader_android_dlopen_ext') !== -1) {
+            // console.log('__dl___loader_android_dlopen_ext finded:', linker.name, exports_name, exports_address, exports_address.sub(linker.base));
+            call_function_addr1 = exports_address;
+        }
+    }
+
+    if (call_function_addr1 != null) {
+        Interceptor.attach(call_function_addr1, {
+            onEnter: function (args) {
+                // console.log(Memory.readUtf8String(args[0]));
+                if (Memory.readUtf8String(args[0]).indexOf('libmsaoaidsec.so') !== -1) {
+                    args[0].writeUtf8String('/system/lib64/libc.so');
+                    // console.log('replace libmsaoaidsec to libc');
+                }
+            },
+        });
+    }
+* */
 console.log("frida start into 得物 ...")
 
 //frida -U --no-pause -f com.shizhuang.duapp -l dewu.js

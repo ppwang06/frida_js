@@ -1,4 +1,4 @@
-//frida -U -f com.taobao.taobao  -l t11.js
+//frida -U -f com.taobao.taobao  -l tao.js
 Java.perform(function () {
     var enableSpdy = false;
     var SwitchConfig = Java.use('mtopsdk.mtop.global.SwitchConfig');

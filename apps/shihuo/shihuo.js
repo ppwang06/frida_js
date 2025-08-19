@@ -10,6 +10,8 @@
 *
 * <libdusanwa.so> method_name => byte[] com.shizhuang.dusanwa.main.SwSdk.achilles(byte[]) ,offset=> 0x29184 ,module_name=> libdusanwa.so
 * <libdusanwa.so> method_name => byte[] com.shizhuang.dusanwa.main.SwSdk.heracles(byte[], int, int) ,offset=> 0x29bf4 ,module_name=> libdusanwa.s
+* sign package com.shizhi.shihuoapp.library.net.interceptor;
+* public native Response intercept(Interceptor.Chain chain);
 * */
 
 function hook_java() {

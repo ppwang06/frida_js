@@ -12,6 +12,32 @@
 * <libdusanwa.so> method_name => byte[] com.shizhuang.dusanwa.main.SwSdk.heracles(byte[], int, int) ,offset=> 0x29bf4 ,module_name=> libdusanwa.s
 * sign package com.shizhi.shihuoapp.library.net.interceptor;
 * public native Response intercept(Interceptor.Chain chain);
+*
+* alif055c204a8b60be1MI 823836android17548959903578.0.0123456
+* huawei f055c204a8b60be1 MI 8 8148 android 1755590400000 6.51.0 123456
+*
+* huaweif055c204a8b60be1MI 88148android17555904000006.51.0123456
+* huawei  f055c204a8b60be1 MI 8 8148 android17555904000006.51.0123456
+* oppo    f055c204a8b60be1 MI 8 13968 MI 8 android 1755668394176 7.0.0 123456
+* 93185446a2d5bef0426dcbb738b7b4f8
+* channel=huawei&clientCode=%7Bholder%7D&device=MI%208&platform=android&timestamp=1755590400000&v=6.51.0&minVersion=8148&token=93185446a2d5bef0426dcbb738b7b4f8
+* channel=huawei&clientCode={holder}&device=MI 8&platform=android&timestamp=1755590400000&v=6.51.0&minVersion=8148&token=93185446a2d5bef0426dcbb738b7b4f8
+*
+* <libldp.so> method_name => java.lang.String com.shizhi.shihuoapp.library.core.net.b.h(java.util.Map, java.lang.String) ,offset=> 0x372910 ,module_name=> libldp.so
+* ConvertUtils
+* public static String b(String str) {
+        return (str == null || str.length() == 0) ? "" : c(str.getBytes());
+    }
+
+*
+@Deprecated(message = "不需要手动设置")
+@NotNull
+public final native Map<String, String> e(String platform);
+
+@NotNull
+public final native String h(Map<String, ? extends Object> params, String host);
+
+oppof055c204a8b60be1MI 813968MI 8android17556683941767.0.0123456
 * */
 
 function hook_java() {
@@ -22,22 +48,118 @@ function hook_java() {
         //     //this.show();
         // }
 
-        let SwSdk = Java.use("com.shizhuang.dusanwa.main.SwSdk");
-        SwSdk["achilles"].implementation = function (bArr) {
-            console.log(`SwSdk.achilles is called: bArr=${bArr}`);
-            let result = this["achilles"](bArr);
-            console.log(`SwSdk.achilles result=${result}`);
+       // let CommonQueryParamsInterceptor = Java.use("com.shizhi.shihuoapp.library.net.interceptor.b");
+       //  CommonQueryParamsInterceptor["intercept"].implementation = function (chain) {
+       //      console.log(`CommonQueryParamsInterceptor.intercept is called: chain=${chain}`);
+       //      let result = this["intercept"](chain);
+       //      console.log(`CommonQueryParamsInterceptor.intercept result=${result}`);
+       //      return result;
+       //  };
+
+       // let RealInterceptorChain = Java.use("okhttp3.internal.http.RealInterceptorChain");
+       //  RealInterceptorChain["proceed"].overload('okhttp3.Request').implementation = function (request) {
+       //      console.log(`RealInterceptorChain.proceed is called: request=${request}`);
+       //      let result = this["proceed"](request);
+       //      console.log(`RealInterceptorChain.proceed result=${result}`);
+       //      return result;
+       //  };
+       //
+       //  let Builder = Java.use("okhttp3.Request$Builder");
+       //  Builder["url"].overload('okhttp3.HttpUrl').implementation = function (url) {
+       //      console.log(`Builder.url is called: url=${url}`);
+       //      let result = this["url"](url);
+       //      console.log(`Builder.url result=${result}`);
+       //      return result;
+       //  };
+
+        // let Builder = Java.use("okhttp3.HttpUrl$Builder");
+        // Builder["addQueryParameter"].implementation = function (name, str) {
+        //     console.log(`Builder.addQueryParameter is called: name=${name}, str=${str}`);
+        //     let result = this["addQueryParameter"](name, str);
+        //     console.log(`Builder.addQueryParameter result=${result}`);
+        //     return result;
+        // };
+
+        // let RequestUtils = Java.use("com.vk.duapp.utils.RequestUtils");
+        // RequestUtils["generateNewSign"].implementation = function (map, str) {
+        //     console.log(`RequestUtils.generateNewSign is called: map=${map}, str=${str}`);
+        //     let result = this["generateNewSign"](map, str);
+        //     console.log(`RequestUtils.generateNewSign result=${result}`);
+        //     return result;
+        // };
+        // let b = Java.use("com.shizhi.shihuoapp.library.core.net.b");
+        // b["h"].implementation = function (params, host) {
+        //     // params=[object Object]
+        //     console.log(`b.h is called: params=${params}, host=${host}`);
+        //     var keyset3 = params.keySet();
+        //     var it3 = keyset3.iterator();
+        //     while(it3.hasNext()){
+        //         var keystr3 = it3.next().toString();
+        //         var valuestr3 = params.get(keystr3);
+        //         console.log(keystr3, valuestr3)
+        //     }
+        //     let result = this["h"](params, host);
+        //     console.log(`b.h result=${result}`);
+        //     return result;
+        // };
+
+        // let z = Java.use("com.blankj.utilcode.util.z");
+        // z["O"].implementation = function (data) {
+        //     console.log(`z.O is called: data=${data}`);
+        //     let result = this["O"](data);
+        //     console.log(`z.O result=${result}`);
+        //     return result;
+        // };
+        // let ab = Java.use("com.blankj.utilcode.util.ab");
+        // ab["b"].overload('java.lang.String').implementation = function (str) {
+        //     console.log(`ab.b is called: str=${str}`);
+        //     let result = this["b"](str);
+        //     console.log(`ab.b result=${result}`);
+        //     return result;
+        // };
+        // let ParamsSettings = Java.use("com.shizhi.shihuoapp.library.core.c.b");
+        // ParamsSettings["a"].overload('java.util.Map', 'java.lang.String').implementation = function (params, host) {
+        //     console.log(`ParamsSettings.a is called: params=${params}, host=${host}`);
+        //     var keyset3 = params.keySet();
+        //     var it3 = keyset3.iterator();
+        //     while(it3.hasNext()){
+        //         var keystr3 = it3.next().toString();
+        //         var valuestr3 = params.get(keystr3);
+        //         console.log(keystr3, valuestr3)
+        //     }
+        //     let result = this["a"](params, host);
+        //     console.log(`ParamsSettings.a result=${result}`);
+        //     return result;
+        // };
+
+        let z = Java.use("com.blankj.utilcode.util.z");
+        z["V"].implementation = function (data) {
+            console.log(`z.V is called: data=${data}`);
+            let result = this["V"](data);
+            console.log(`z.V result=${result}`);
             return result;
         };
 
-        SwSdk["heracles"].implementation = function (bArr, i10, i11) {
-            console.log(`SwSdk.heracles is called: bArr=${bArr}, i10=${i10}, i11=${i11}`);
-            let result = this["heracles"](bArr, i10, i11);
-            console.log(`SwSdk.heracles result=${result}`);
+        z["W"].implementation = function (data, salt) {
+            console.log(`z.W is called: data=${data}, salt=${salt}`);
+            let result = this["W"](data, salt);
+            console.log(`z.W result=${result}`);
+            return result;
+        };
+        z["Y"].implementation = function (data, salt) {
+            console.log(`z.Y is called: data=${data}, salt=${salt}`);
+            let result = this["Y"](data, salt);
+            console.log(`z.Y result=${result}`);
             return result;
         };
     })
 }
+
+function showStack() {
+        let Throwable = Java.use("java.lang.Throwable");
+        let stackTraceString = Java.use("android.util.Log").getStackTraceString(Throwable.$new())
+        console.log(stackTraceString);
+    }
 
 
 function find_so() {
@@ -89,6 +211,26 @@ function call_encrypt(){
         var MyArray1 = Java.array("byte", b_arr1);
         let result = Bridge["achilles"](MyArray1);
         console.log("res_data结果:",result)
+    })
+}
+
+
+function call_token1(){
+    Java.perform(function (){
+        let B = Java.use("com.shizhi.shihuoapp.library.core.net.b");
+        let HashMap = Java.use("java.util.HashMap");
+        let params = HashMap.$new();
+        params.put("clientCode", "{holder}");
+        params.put("device", "MI 8");
+        params.put("minVersion", "23836");
+        params.put("platform", "android");
+        params.put("channel", "ali");
+        params.put("timestamp", "1755655485654");
+        params.put("v", "v8.0.0");
+        let host = "sh-gateway.shihuo.cn";
+        let b_instance = B.$new();  // 创建实例
+        let result = b_instance.h(params, host); // 用实例方法调用
+        console.log("call_token:", result);
     })
 }
 

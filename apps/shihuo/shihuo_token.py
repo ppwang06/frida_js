@@ -46,7 +46,8 @@ end_str = ""
 for one_key in new_keys:
     one_val = base_info.get(one_key)
     if one_val == "{holder}":
-        one_val = "f055c204a8b60be1"
+        # 16位固定常量 类似设备id
+        one_val = "****************"
     end_str += f"{one_val}"
 print(end_str)
 md5_token = hashlib.md5(f"{end_str}123456".encode()).hexdigest()

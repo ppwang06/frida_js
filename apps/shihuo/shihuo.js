@@ -132,28 +132,73 @@ function hook_java() {
         //     return result;
         // };
 
-        let z = Java.use("com.blankj.utilcode.util.z");
-        z["V"].implementation = function (data) {
-            console.log(`z.V is called: data=${data}`);
-            let result = this["V"](data);
-            console.log(`z.V result=${result}`);
-            return result;
-        };
+        // let z = Java.use("com.blankj.utilcode.util.z");
+        // z["V"].implementation = function (data) {
+        //     console.log(`z.V is called: data=${data}`);
+        //     let result = this["V"](data);
+        //     console.log(`z.V result=${result}`);
+        //     return result;
+        // };
+        //
+        // z["W"].implementation = function (data, salt) {
+        //     console.log(`z.W is called: data=${data}, salt=${salt}`);
+        //     let result = this["W"](data, salt);
+        //     console.log(`z.W result=${result}`);
+        //     return result;
+        // };
+        // z["Y"].implementation = function (data, salt) {
+        //     console.log(`z.Y is called: data=${data}, salt=${salt}`);
+        //     let result = this["Y"](data, salt);
+        //     console.log(`z.Y result=${result}`);
+        //     return result;
+        // };
 
-        z["W"].implementation = function (data, salt) {
-            console.log(`z.W is called: data=${data}, salt=${salt}`);
-            let result = this["W"](data, salt);
-            console.log(`z.W result=${result}`);
-            return result;
-        };
-        z["Y"].implementation = function (data, salt) {
-            console.log(`z.Y is called: data=${data}, salt=${salt}`);
-            let result = this["Y"](data, salt);
-            console.log(`z.Y result=${result}`);
+        let z = Java.use("com.blankj.utilcode.util.z");
+        z["s"].implementation = function (data, key, transformation, iv) {
+            console.log(`z.s is called: data=${data}, key=${key}, transformation=${transformation}, iv=${iv}`);
+            let result = this["s"](data, key, transformation, iv);
+            console.log(`z.s result=${result}`);
             return result;
         };
     })
 }
+
+
+
+function hook_java1() {
+    Java.perform(function () {
+
+        var dlopen = Module.findExportByName(null, "dlopen");
+        var android_dlopen_ext = Module.findExportByName(null, "android_dlopen_ext");
+
+        Interceptor.attach(dlopen, {
+            onEnter: function (args) {
+                var path_ptr = args[0];
+                var path = ptr(path_ptr).readCString();
+                console.log("[dlopen:]", path);
+            },
+            onLeave: function (retval) {
+
+            }
+        });
+
+        Interceptor.attach(android_dlopen_ext, {
+            onEnter: function (args) {
+                var path_ptr = args[0];
+                var path = ptr(path_ptr).readCString();
+                console.log("[dlopen_ext:]", path);
+            },
+            onLeave: function (retval) {
+
+            }
+        });
+    });
+}
+
+
+
+
+
 
 function showStack() {
         let Throwable = Java.use("java.lang.Throwable");

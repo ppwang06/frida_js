@@ -1,3 +1,11 @@
+/*
+* 过简单的vpn检测 氢氧水  com.zjhzwxzl.jdgj
+* frida -U --pause -f com.zjhzwxzl.jdgj  -l new_hook.js
+*
+* 蜜源的 com.jf.my
+* frida -U --pause -f com.jf.my  -l new_hook.js
+*
+* */
 //找寻反调试的so文件
 function find_so() {
     Java.perform(function () {
@@ -29,7 +37,7 @@ function find_so() {
     });
 }
 
-//  frida -U --pause -f com.jzyd.coupon  -l new_hook.js
+//  hook_dlopen1()
 function hook_java() {
     Java.perform(function other() {
         var strstr = Module.findExportByName("libc.so", "strstr");
@@ -288,7 +296,9 @@ function hook_call_constructors() {
 }
 
 function main1(){
-    hook_dlopen()
+    // 过简单的vpn检测
+    main()
+    // find_so()
 }
 
 main1()

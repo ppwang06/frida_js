@@ -1,6 +1,7 @@
 console.log("frida start into lvzhou ...")
 
 // # frida -U --no-pause -f com.sina.oasis -l lvzhou.js
+//<liboasiscore.so> method_name => java.lang.String com.weibo.xvideo.NativeApi.s(byte[], boolean) ,offset=> 0x116cc ,module_name=> liboasiscore.so
 function lvzhou() {
     Java.perform(function other() {
         let head = Java.use("com.weibo.xvideo.NativeApi")
@@ -14,6 +15,14 @@ function lvzhou() {
             console.log(result)
             return result
         }
+
+        // let d = Java.use("bh.d");
+        // d["g"].implementation = function (str) {
+        //     console.log(`d.g is called: str=${str}`);
+        //     let result = this["g"](str);
+        //     console.log(`d.g result=${result}`);
+        //     return result;
+        // };
     })
 }
 

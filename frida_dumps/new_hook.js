@@ -174,13 +174,13 @@ function hook_exit_vpn() {
     );
 }
 
-//简单版 vpn检测过
+//简单版 vpn检测过 h2o
 function main() {
     Java.perform(function () {
         Java.use("java.net.NetworkInterface").getName.implementation = function(){
             var string_class = Java.use("java.lang.String");
             var gname = this.getName();
-            if(gname == string_class.$new("tun0")){
+            if(gname === string_class.$new("tun0")){
                 console.log("find ===> ", gname);
                 return string_class.$new("rmnet_data0")
             } else{

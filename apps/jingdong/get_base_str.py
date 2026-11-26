@@ -142,7 +142,24 @@ if __name__ == '__main__':
     logger.info(end_body_new == test)
     # 还原值
     dd = "oyTrYvHvc3G4CNKsExHydWUiSwPtY2VmdPLyaXZrY3usExHydWUiSwP2b2vuJQv2ZIS6ZwPic2UiSwTsdQYsEsSsBMTscwPkZMS6SvTvZQ1fSsmsYxvsdMS6SsSiSwDfdRvNb2HvSte3CsmsY2v0oUvuStemBMTtcRDEb1H1YW4sEw51bQmiSwHrcwjDb2HvbOVkdW0sEtCiSwHfc3HyaWD0IWGsEtKiSwV1YWYsEwZrbRDvBMTvdwVkdOvuStesU3HrcxH1cP9FcQVkGXLmUQPyYW1pU3HrdRVzSsmsZxTlbVH5cQUsEtKiSwvzHQVzG2TtStf0cxVvBMTfc0Zyb21FcQVkGXLmStf0cxVvBMTiYXHfdRVuZIS6StKkCMSiSwnvZ28sExHydWUiSwnlbwdfdRVuZIS6StKkCMSiSw1lZQViStesJJSmCJLACJvJGySiSw9tcuZiYWcsEwZrbRDvBMTlbwVsb3rNaQPkbwViStfwYWnzZImsb25vYw94I2V5d29yZMS6SsSiSw9kZWTloPDldXTtZIS6SsSiSw92ZXTzZWPzStemBMTmZPZvcxDfb24sEsSnSsmscQVyc29kYXCsEw51bQmiSxLidWdfbvZvcxDfb24sEtOmCJK1CMmscQn1c0DiaWDhG291bxGsEtKiSxLidXDCYW5uZWHQYXHfZ3VvStemBMTmcw9udWD0IwH2StesCRnrcRLjYXThZXH8dP8yCNO4DJOyDJS1X2PmcQ1rcwjvdRn0dWvxdWPkZ3m0CtOnCV8mX3rfYW9jaJKmCV8mXzL8CJY4DtcnCNc3CySiSxLyb3ZfbwDvIWGsEsSmSsmscRTzdQP0ZIS6StKsBMTyZWZyZXDeJWUsEw51bQmiSxDvYXTtaPdrcwVwbQPxStesSsmsc2ViZuHvbQv2ZXT5StesCMSiSxDhdUvuStesCJKmDtU0DtG2DJU2EJCsBMTzb3VyY2VpdRvmZIS6Sw1fbwvpd2PyZISiSxDldXTtZV92YWn1ZIS6SsSiSxHld25TZMS6CMmsdUPuZRTTZMS6StKsBMT1dQ1DZWHfdW0sEw51bQmiSxdrcwVTbw5vcvDldXTtZIS6SwV4dRTrBwvkbwVyBxDldXTtZI5fbwv0SsmsoXTnJwV3StesCIT9"
-    print(back_data(dd))
+    logger.info(f"dd还原值:{back_data(dd)}")
+
+    #
+    d_info = {
+        "d_model": "JUu4",
+        "osVersion": "CJK=",
+        "partner": "WWvkZ1vlbwdMYW8=",
+        "build": "CtKyCtK0CzG=",
+        "appid": "awZpYXLm",
+        "client": "YW5ucw9fZK==",
+        "d_brand": "WQvrb21f",
+        "screen": "CtKyEIenCNqm",
+        "clientVersion": "Cy4nCs4yDK==",
+        "uuid": "CNKmCNKmCNKjCNKmCM0mCNKmBWZwZwYjZwZwZwVvZQYyEQUm",
+        "androidId": "CNDsZwU3DwPtYtuyDNY1Cm=="
+    }
+    for one_key, one_val in d_info.items():
+        logger.info(f"{one_key}:{back_data(one_val)}")
 
 
 
